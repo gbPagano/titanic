@@ -37,4 +37,4 @@ def get_train_test_X_y(df, size=0.3):
     X_test.loc[:,cols] = sca.fit_transform(X_test[cols])
     #X_test = pd.DataFrame(X_test, columns=cols)
 
-    return X_train, X_test, pd.DataFrame(y_train), pd.DataFrame(y_test)
+    return X_train, X_test, y_train, y_test
