@@ -38,3 +38,30 @@ def get_train_test_X_y(df, size=0.3):
     #X_test = pd.DataFrame(X_test, columns=cols)
 
     return X_train, X_test, y_train, y_test
+
+
+def process_validate(df):
+
+    df = df.drop(
+        columns=[
+            "Name",
+            "Ticket",
+            "Cabin",
+        ]
+    ).pipe(pd.get_dummies, drop_first=True)
+    
+    num_cols = [
+        "Age",
+        "Fare",
+    ]
+
+    imputer = impute.IterativeImputer()
+    df.loc[:,num_cols] = imputer.fit_transform(df[num_cols])
+
+
+    cols = "Pclass,Age,SibSp,Parch,Fare".split(",")
+    sca = preprocessing.StandardScaler()
+
+    df.loc[:,cols] = sca.fit_transform(df[cols])
+
+    return df
