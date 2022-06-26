@@ -29,12 +29,12 @@ def get_train_test_X_y(df, size=0.3):
     X_test.loc[:,num_cols] = imputer.transform(X_test[num_cols])
 
 
-    cols = "PassengerId,Pclass,Age,SibSp,Parch,Fare,Sex_male,Embarked_Q,Embarked_S".split(",")
+    cols = "Pclass,Age,SibSp,Parch,Fare".split(",")
     sca = preprocessing.StandardScaler()
 
-    X_train.loc[:,num_cols] = sca.fit_transform(X_train[num_cols])
-    X_train = pd.DataFrame(X_train, columns=cols)
-    X_test.loc[:,num_cols] = sca.fit_transform(X_test[num_cols])
-    X_test = pd.DataFrame(X_test, columns=cols)
+    X_train.loc[:,cols] = sca.fit_transform(X_train[cols])
+    #X_train = pd.DataFrame(X_train, columns=cols)
+    X_test.loc[:,cols] = sca.fit_transform(X_test[cols])
+    #X_test = pd.DataFrame(X_test, columns=cols)
 
     return X_train, X_test, pd.DataFrame(y_train), pd.DataFrame(y_test)
