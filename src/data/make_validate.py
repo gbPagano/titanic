@@ -9,7 +9,7 @@ def build_validate():
     raw_path = path.join(src_path, "data", "raw")
     processed_path = path.join(src_path, "data", "processed")
 
-    df_raw = pd.read_csv(path.join(raw_path,"train.csv"))
+    df_raw = pd.read_csv(path.join(raw_path,"validate.csv"))
 
     df = process_validate(df_raw)
 
