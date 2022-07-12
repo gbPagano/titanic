@@ -13,14 +13,14 @@ def random_forest():
     final = pd.DataFrame(validate["PassengerId"])
     validate = validate.drop(columns=["PassengerId"])
 
-    rf = build_rf()
+    rf = train_rf()
 
     predicts = rf.predict(validate)
     final["Survived"] = pd.DataFrame(predicts)
 
     final.to_csv(path.join(models_path,"random_forest.csv"), index=False)
 
-def build_rf():
+def train_rf():
 
     processed_path = path.join(src_path, "data", "processed")
 
